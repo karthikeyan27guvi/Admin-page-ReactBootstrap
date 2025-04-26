@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { findIndexById } from './Helper';
+import { userContext } from '../App';
 
-function EditUser({ user, setUser }) {
+function EditUser() {
+
+  let { user, setUser } = useContext(userContext)
 
   let [name, setName] = useState("");
   let [email, setEmail] = useState("")

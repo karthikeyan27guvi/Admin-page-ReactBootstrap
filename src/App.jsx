@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, createContext } from 'react'
 import Sidebar from './Components/Sidebar'
 import Topbar from './Components/Topbar'
 import Dashboard from './Components/Dashboard'
 import AddUser from './Components/AddUser'
-import Profile from './Components/Profile'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import EditUser from './Components/EditUser'
+import DashboardContextComponent from './Context/DashboardContextComponent'
+
+export const userContext = createContext()
 
 function App() {
 
@@ -50,13 +52,16 @@ function App() {
       <div id="content-wrapper" className="d-flex flex-column">
         <div id="content">
           <Topbar/>
+          <userContext.Provider value={{user, setUser}}>
             <Routes>
-              <Route path='/' element={<Dashboard user={user} setUser={setUser}/>}/>
-              <Route path='/add-user' element={<AddUser user={user} setUser={setUser}/>}/>
-              <Route path='/edit-user/:id' element={<EditUser user={user} setUser={setUser}/>}/>
-              <Route path='/profile' element={<Profile/>}/>
+              <Route path='/' element={<DashboardContextComponent>
+                                        <Dashboard/>
+                                      </DashboardContextComponent>}/>
+              <Route path='/add-user' element={<AddUser/>}/>
+              <Route path='/edit-user/:id' element={<EditUser/>}/>
               <Route path='*' element={<Navigate to='/'/>}/>
             </Routes>
+          </userContext.Provider>  
         </div>
       </div>
         </BrowserRouter>  

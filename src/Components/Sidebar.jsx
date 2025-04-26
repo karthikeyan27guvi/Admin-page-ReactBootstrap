@@ -40,14 +40,6 @@ return <>
         </Link> 
     </li>
 
-    {/* <!-- Nav Item - Utilities Collapse Menu --> */}
-    <li className="nav-item active">
-        <Link to='/profile' className="nav-link">
-            <i className="fa-solid fa-user"></i>
-            <span>Profile</span>
-        </Link>
-    </li>
-
     {/* <!-- Divider --> */}
     <hr className="sidebar-divider"/>
 </ul>

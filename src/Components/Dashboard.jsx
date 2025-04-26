@@ -1,44 +1,18 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Card from './Card'
 import Table from 'react-bootstrap/Table';
 import { Button } from 'react-bootstrap';
 import { findIndexById } from './Helper';
 import { useNavigate } from 'react-router-dom';
+import { userContext } from '../App';
+import { DashboardContext } from '../Context/DashboardContextComponent';
 
-function Dashboard({ user, setUser }) {
+function Dashboard() {
 
+    let {user, setUser} = useContext(userContext);
     let navigate = useNavigate();
 
-    let data = [
-        {
-            title: "Earning(Monthly)",
-            value: "$ 40,000",
-            icon: "fa-calendar",
-            color: "primary",
-            isProgress: false
-        },
-        {
-            title: "Earnings (Annual)",
-            value: "$215,000",
-            icon: "fa-dollar-sign",
-            color: "success",
-            isProgress: false
-        },
-        {
-            title: "Tasks",
-            value: "100",
-            icon: "fa-clipboard-list",
-            color: "info",
-            isProgress: true
-        },
-        {
-            title: "Pending Requests",
-            value: "18",
-            icon: "fa-comments",
-            color: "warning",
-            isProgress: false
-        }
-    ]
+    let data = useContext(DashboardContext)
 
     const handleDelete = (id) =>{
         const index = findIndexById(user, id);
